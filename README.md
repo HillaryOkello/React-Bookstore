@@ -13,7 +13,7 @@
 
 ## Live Demo
 
-<!-- [Live Demo Link](https://azeez-calculatorz.herokuapp.com/) -->
+[Live Demo Link](https://ah-bookstore.herokuapp.com/)
 
 ## Getting Started
 
