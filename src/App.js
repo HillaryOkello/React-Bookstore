@@ -1,11 +1,11 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
+// import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Counter />
+      <h1> Hello Redux</h1>
     </div>
   );
 }
