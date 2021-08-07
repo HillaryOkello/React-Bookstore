@@ -1,11 +1,13 @@
 import React from 'react';
-// import { Counter } from './features/counter/Counter';
 import './App.css';
+import BooksList from '../containers/BooksList';
+import BookForm from '../containers/BooksForm';
 
 function App() {
   return (
     <div className="App">
-      <h1> Hello Redux</h1>
+      <BooksList />
+      <BookForm />
     </div>
   );
 }
