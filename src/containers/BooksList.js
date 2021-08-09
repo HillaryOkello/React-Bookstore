@@ -4,14 +4,21 @@ function BooksList() {
   return (
     <div>
       <h1>Books List</h1>
-      <table>
+      <table className="table">
         <thead>
           <tr>
-            <th>Book ID</th>
-            <th>Title</th>
-            <th>Category</th>
+            <th scope="col">Book ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              
+            </th>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
