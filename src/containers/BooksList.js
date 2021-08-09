@@ -1,6 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Book from '../components/Book';
 
-function BooksList() {
+function BooksList(props) {
+  const { books } = props;
+  const displayBook = books.map((book) => <Book key={book.id} book={book} />);
+
   return (
     <div>
       <h1>Books List</h1>
@@ -13,15 +19,17 @@ function BooksList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">
-              
-            </th>
-          </tr>
+          {displayBook}
         </tbody>
       </table>
     </div>
   );
 }
 
-export default BooksList;
+BooksList.propTypes = {
+  books: PropTypes.instanceOf(Array).isRequired,
+};
+
+const mapStateToProps = (state) => ({ books: state.bookReducer });
+
+export default connect(mapStateToProps)(BooksList);
