@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Book from '../components/Book';
+import * as actions from '../actions';
 
-const BooksList = (props) => {
+function BooksList(props) {
   const { books } = props;
   const handleRemoveBook = (event, book) => {
     event.preventDefault();
@@ -31,7 +32,7 @@ const BooksList = (props) => {
       </table>
     </div>
   );
-};
+}
 
 BooksList.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
@@ -40,4 +41,4 @@ BooksList.propTypes = {
 
 const mapStateToProps = (state) => ({ books: state.bookReducer });
 
-export default connect(mapStateToProps)(BooksList);
+export default connect(mapStateToProps, actions)(BooksList);
