@@ -86,5 +86,4 @@ BooksForm.propTypes = {
   createBook: PropTypes.func.isRequired,
 };
 
-// export default BooksForm;
 export default connect(null, actions)(BooksForm);
