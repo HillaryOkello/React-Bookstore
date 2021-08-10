@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const categories = [
   'Action',
@@ -15,18 +18,36 @@ class BooksForm extends React.PureComponent {
 
     this.state = {
       title: '',
+      category: '',
     };
   }
 
   handleChange = (event) => {
     event.preventDefault();
-    this.setState({ title: event.target.value });
+
+    if (event.target.name === 'book-title') {
+      this.setState({ title: event.target.value });
+    }
+
+    if (event.target.name === 'categories') {
+      this.setState({ category: event.target.value });
+    }
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { title, category } = this.state;
+    const { createBook } = this.props;
+    const id = Math.random();
+    const newBook = { id, title, category };
+    createBook(newBook);
+    this.setState({ title: '', category: '' });
   };
 
   render() {
-    const { title } = this.state;
+    const { title, category } = this.state;
     return (
-      <form>
+      <form onSubmit={(event) => this.handleSubmit(event)}>
         <div>
           <label htmlFor="book-title">
             Title
@@ -41,7 +62,11 @@ class BooksForm extends React.PureComponent {
         </div>
         <br />
         <div>
-          <select name="categories">
+          <select
+            name="categories"
+            value={category}
+            onChange={this.handleChange}
+          >
             <option value="">Please choose an option</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -57,4 +82,8 @@ class BooksForm extends React.PureComponent {
   }
 }
 
-export default BooksForm;
+BooksForm.propTypes = {
+  createBook: PropTypes.func.isRequired,
+};
+
+export default connect(null, actions)(BooksForm);
