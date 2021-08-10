@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-// import * as actions from '../actions';
 
 const Book = (props) => {
   const { book, removeBook } = props;
