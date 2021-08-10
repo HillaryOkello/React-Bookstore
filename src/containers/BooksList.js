@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Book from '../components/Book';
 
-function BooksList(props) {
+const BooksList = (props) => {
   const { books } = props;
-  const displayBook = books.map((book) => <Book key={book.id} book={book} />);
+  const handleRemoveBook = (event, book) => {
+    event.preventDefault();
+    props.removeBook(book.id);
+  };
+  const displayBook = books.map(
+    (book) => <Book key={book.id} book={book} handleChange={handleRemoveBook} />,
+  );
 
   return (
     <div>
@@ -16,6 +22,7 @@ function BooksList(props) {
             <th scope="col">Book ID</th>
             <th scope="col">Title</th>
             <th scope="col">Category</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -24,10 +31,11 @@ function BooksList(props) {
       </table>
     </div>
   );
-}
+};
 
 BooksList.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
+  removeBook: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({ books: state.bookReducer });
