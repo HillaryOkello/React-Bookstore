@@ -6,6 +6,7 @@ import { categories } from '../containers/BooksForm';
 
 const CategoryFilter = (props) => {
   const { category, changeFilter } = props;
+
   const filters = [...categories, 'All'];
 
   const handleFilterChange = (event) => {
@@ -26,12 +27,12 @@ const CategoryFilter = (props) => {
 };
 
 CategoryFilter.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.objectOf(CategoryFilter).isRequired,
   changeFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  category: state.category,
+  category: state.filterReducer,
 });
 
 export default connect(mapStateToProps, action)(CategoryFilter);
