@@ -15,7 +15,12 @@ const CategoryFilter = (props) => {
 
   return (
     <div>
-      <select name="categories" value={category} onChange={handleFilterChange}>
+      <select
+        name="categories"
+        value={category}
+        onChange={handleFilterChange}
+        className="btn btn-secondary dropdown-toggle"
+      >
         {filters.map((cat) => (
           <option key={cat} value={cat}>
             {cat}

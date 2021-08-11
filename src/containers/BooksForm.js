@@ -48,12 +48,13 @@ class BooksForm extends React.PureComponent {
     const { title, category } = this.state;
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
-        <div>
+        <div className="form-group">
           <label htmlFor="book-title">
             Title
             <input
               type="text"
               id="book-title"
+              className="form-control"
               name="book-title"
               value={title}
               onChange={this.handleChange}
@@ -66,6 +67,7 @@ class BooksForm extends React.PureComponent {
             name="categories"
             value={category}
             onChange={this.handleChange}
+            className="btn btn-secondary dropdown-toggle"
           >
             <option value="">Please choose an option</option>
             {categories.map((cat) => (
@@ -76,7 +78,7 @@ class BooksForm extends React.PureComponent {
           </select>
         </div>
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
