@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const categories = [
+export const categories = [
   'Action',
   'Biography',
   'History',

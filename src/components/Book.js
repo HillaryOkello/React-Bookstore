@@ -9,7 +9,7 @@ const Book = (props) => {
       <td>{book.id}</td>
       <td>{book.title}</td>
       <td>{book.category}</td>
-      <td><button type="button" onClick={handleRemoveBook}>Remove Book</button></td>
+      <td><button type="button" onClick={handleRemoveBook} className="btn btn-primary">Remove Book</button></td>
     </tr>
   );
 };
