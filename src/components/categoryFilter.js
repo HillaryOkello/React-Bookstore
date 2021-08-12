@@ -32,7 +32,7 @@ const CategoryFilter = (props) => {
 };
 
 CategoryFilter.propTypes = {
-  category: PropTypes.objectOf(CategoryFilter).isRequired,
+  category: PropTypes.string.isRequired,
   changeFilter: PropTypes.func.isRequired,
 };
 
