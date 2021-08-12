@@ -6,10 +6,13 @@ import * as actions from '../actions';
 import CategoryFilter from '../components/categoryFilter';
 
 function BooksList(props) {
-  const { books, bookFilter } = props;
+  const { books, bookFilter, changeFilter } = props;
   const handleRemoveBook = (event, book) => {
     event.preventDefault();
     props.removeBook(book.id);
+  };
+  const handleFilterChange = (event) => {
+    changeFilter(event.target.value);
   };
   const displayBook = () => {
     if (bookFilter === 'All' || '') {
@@ -40,7 +43,7 @@ function BooksList(props) {
           {displayBook()}
         </tbody>
       </table>
-      <CategoryFilter />
+      <CategoryFilter handleFilterChange={handleFilterChange} />
     </div>
   );
 }
@@ -49,6 +52,7 @@ BooksList.propTypes = {
   books: PropTypes.instanceOf(Array).isRequired,
   removeBook: PropTypes.func.isRequired,
   bookFilter: PropTypes.string.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

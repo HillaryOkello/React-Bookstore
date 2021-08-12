@@ -5,13 +5,9 @@ import * as action from '../actions';
 import { categories } from '../containers/BooksForm';
 
 const CategoryFilter = (props) => {
-  const { category, changeFilter } = props;
+  const { category, handleFilterChange } = props;
 
   const filters = [...categories, 'All'];
-
-  const handleFilterChange = (event) => {
-    changeFilter(event.target.value);
-  };
 
   return (
     <div>
@@ -33,7 +29,7 @@ const CategoryFilter = (props) => {
 
 CategoryFilter.propTypes = {
   category: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
+  handleFilterChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
