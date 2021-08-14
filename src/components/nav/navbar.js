@@ -1,6 +1,6 @@
 import React from 'react';
 import './navbar.css';
-// React-Bookstore/src/components/nav/navbar.css
+
 const Nav = () => (
   <div className="navigation-wraper">
     <div className="navigation">
