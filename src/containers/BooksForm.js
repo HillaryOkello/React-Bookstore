@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import './bookform.css';
+import Select from '../components/Select';
 
 export const categories = [
   'Action',
@@ -12,7 +14,7 @@ export const categories = [
   'Learning',
   'Sci-Fi',
 ];
-class BooksForm extends React.PureComponent {
+class BookForm extends Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +26,6 @@ class BooksForm extends React.PureComponent {
 
   handleChange = (event) => {
     event.preventDefault();
-
     if (event.target.name === 'book-title') {
       this.setState({ title: event.target.value });
     }
@@ -47,45 +48,51 @@ class BooksForm extends React.PureComponent {
   render() {
     const { title, category } = this.state;
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
-        <div className="form-group">
-          <label htmlFor="book-title">
-            Title
+      <div className="book-form-container">
+        <h3 className="form-header">ADD NEW BOOK</h3>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
+          <div className="title-input">
             <input
               type="text"
               id="book-title"
-              className="form-control"
               name="book-title"
               value={title}
               onChange={this.handleChange}
+              placeholder="Book title"
+              required
             />
-          </label>
-        </div>
-        <br />
-        <div>
-          <select
-            name="categories"
-            value={category}
-            onChange={this.handleChange}
-            className="btn btn-secondary dropdown-toggle"
-          >
-            <option value="">Please choose an option</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-        <br />
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+          </div>
+          <div className="right-selection">
+            <Select
+              name="categories"
+              value={category}
+              onChange={this.handleChange}
+              className="book-categories"
+            >
+              {categories.map((cate) => (
+                <option key={cate} value={cate}>
+                  {cate}
+                </option>
+              ))}
+            </Select>
+            {/* <Selector
+              options={cate}
+              name="categories"
+              value={category}
+              classes={['book-categories']}
+            /> */}
+            <button className="submit-button" type="submit">
+              ADD BOOK
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
 
-BooksForm.propTypes = {
+BookForm.propTypes = {
   createBook: PropTypes.func.isRequired,
 };
 
-export default connect(null, actions)(BooksForm);
+export default connect(null, actions)(BookForm);

@@ -1,6 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# React Calculator
+# Bookstore CMS
+
+![Top Page Screenshot](./src/assets/homepage.png)
 
 ## Table of Contents
 

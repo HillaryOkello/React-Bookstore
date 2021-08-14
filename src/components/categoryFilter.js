@@ -3,23 +3,28 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as action from '../actions';
 import { categories } from '../containers/BooksForm';
+import './categoryfilter.css';
 
 const CategoryFilter = (props) => {
-  const { category, handleFilterChange } = props;
+  const { category, changeFilter } = props;
 
-  const filters = [...categories, 'All'];
+  const filters = ['All', ...categories];
+
+  const handleFilterChange = (event) => {
+    changeFilter(event.target.value);
+  };
 
   return (
-    <div>
+    <div className="mt">
       <select
         name="categories"
         value={category}
         onChange={handleFilterChange}
-        className="btn btn-secondary dropdown-toggle"
+        className="category-filter"
       >
-        {filters.map((cat) => (
-          <option key={cat} value={cat}>
-            {cat}
+        {filters.map((cate) => (
+          <option key={cate} value={cate}>
+            {cate}
           </option>
         ))}
       </select>
@@ -29,7 +34,7 @@ const CategoryFilter = (props) => {
 
 CategoryFilter.propTypes = {
   category: PropTypes.string.isRequired,
-  handleFilterChange: PropTypes.func.isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
