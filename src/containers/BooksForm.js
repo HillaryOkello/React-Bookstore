@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import './bookform.css';
 
 export const categories = [
   'Action',
@@ -47,39 +48,43 @@ class BooksForm extends React.PureComponent {
   render() {
     const { title, category } = this.state;
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
-        <div className="form-group">
-          <label htmlFor="book-title">
+      <div className="book-form-container">
+        <h3 className="form-header">ADD NEW BOOK</h3>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
+          <div className="title-input">
+            {/* <label htmlFor="book-title"> */}
             Title
             <input
               type="text"
               id="book-title"
               className="form-control"
               name="book-title"
+              placeholder="Book title"
               value={title}
               onChange={this.handleChange}
             />
-          </label>
-        </div>
-        <br />
-        <div>
-          <select
-            name="categories"
-            value={category}
-            onChange={this.handleChange}
-            className="btn btn-secondary dropdown-toggle"
-          >
-            <option value="">Please choose an option</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-        <br />
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+            {/* </label> */}
+          </div>
+          <div className="right-selection">
+            <select
+              name="categories"
+              value={category}
+              onChange={this.handleChange}
+              className="book-categories"
+            >
+              {categories.map((cate) => (
+                <option key={cate} value={cate}>
+                  {cate}
+                </option>
+              ))}
+            </select>
+            <button className="submit-button" type="submit">
+              ADD BOOK
+            </button>
+          </div>
+          {/* <button type="submit" className="btn btn-primary">Submit</button> */}
+        </form>
+      </div>
     );
   }
 }
