@@ -147,6 +147,10 @@
   color: #121212;
 }
 
+.description{
+  margin-right: 600px;
+}
+
 .right-side button {
   margin: 12px 0 9px 59px;
   padding: 7px 19px 8px 22px;

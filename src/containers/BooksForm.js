@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import './bookform.css';
+import Select from '../components/Select';
 
 export const categories = [
   'Action',
@@ -13,7 +14,7 @@ export const categories = [
   'Learning',
   'Sci-Fi',
 ];
-class BooksForm extends React.PureComponent {
+class BookForm extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +26,6 @@ class BooksForm extends React.PureComponent {
 
   handleChange = (event) => {
     event.preventDefault();
-
     if (event.target.name === 'book-title') {
       this.setState({ title: event.target.value });
     }
@@ -52,21 +52,18 @@ class BooksForm extends React.PureComponent {
         <h3 className="form-header">ADD NEW BOOK</h3>
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <div className="title-input">
-            {/* <label htmlFor="book-title"> */}
-            Title
             <input
               type="text"
               id="book-title"
-              className="form-control"
               name="book-title"
-              placeholder="Book title"
               value={title}
               onChange={this.handleChange}
+              placeholder="Book title"
+              required
             />
-            {/* </label> */}
           </div>
           <div className="right-selection">
-            <select
+            <Select
               name="categories"
               value={category}
               onChange={this.handleChange}
@@ -77,20 +74,25 @@ class BooksForm extends React.PureComponent {
                   {cate}
                 </option>
               ))}
-            </select>
+            </Select>
+            {/* <Selector
+              options={cate}
+              name="categories"
+              value={category}
+              classes={['book-categories']}
+            /> */}
             <button className="submit-button" type="submit">
               ADD BOOK
             </button>
           </div>
-          {/* <button type="submit" className="btn btn-primary">Submit</button> */}
         </form>
       </div>
     );
   }
 }
 
-BooksForm.propTypes = {
+BookForm.propTypes = {
   createBook: PropTypes.func.isRequired,
 };
 
-export default connect(null, actions)(BooksForm);
+export default connect(null, actions)(BookForm);
